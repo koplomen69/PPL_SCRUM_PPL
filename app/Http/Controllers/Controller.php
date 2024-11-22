@@ -80,6 +80,14 @@ class Controller extends BaseController
             'codeTransaksi' => $codeTransaksi
         ]);
     }
+    public function contact_us()
+    {
+        $countKeranjang = tblCart::where(['idUser' => 'guest123', 'status' => 0])->count();
+        return view('pelanggan.page.contact_us', [
+            'title'     => 'Contact Us',
+            'count'     => $countKeranjang,
+        ]);
+    }
     public function prosesCheckout(Request $request, $id)
     {
         $data = $request->all();
@@ -98,7 +106,7 @@ class Controller extends BaseController
         ];
         $detailTransaksi::create($fieldDetail);
 
-        // update cart 
+        // update cart
         $fieldCart = [
             'qty'          => $data['qty'],
             'price'        => $data['total'],

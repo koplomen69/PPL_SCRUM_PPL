@@ -25,6 +25,8 @@ Route::POST('/addTocart', [TransaksiController::class, 'addTocart'])->name('addT
 Route::POST('/storePelanggan', [UserController::class, 'storePelanggan'])->name('storePelanggan');
 Route::POST('/login_pelanggan', [UserController::class, 'loginProses'])->name('loginproses.pelanggan');
 Route::GET('/logout_pelanggan', [UserController::class, 'logout'])->name('logout.pelanggan');
+Route::GET('/contact_us', [Controller::class, 'contact_us'])->name('contact_us');
+
 
 Route::get('/shop', [Controller::class, 'shop'])->name('shop');
 Route::get('/transaksi', [Controller::class, 'transaksi'])->name('transaksi');

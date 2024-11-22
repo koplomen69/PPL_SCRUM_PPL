@@ -17,6 +17,10 @@
                 <li class="nav-item">
                     <a class="nav-link {{ Request::path() == 'contact' ? 'active' : '' }}" href="/contact">About Us</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::path() == 'contact_us' ? 'active' : '' }}" href="/contact_us">Contact
+                        Us</a>
+                </li>
                 @auth
                     <div class="select" tabindex="0" role="button">
                         <div class="text-links">
