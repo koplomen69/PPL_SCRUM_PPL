@@ -1,12 +1,22 @@
 <nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #025464">
     <div class="container">
-        <a class="navbar-brand" href="#">Toko Online</a>
+        <a class="navbar-brand" href="#">Toko Pakaian Canggih</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end gap-4" id="navbarSupportedContent">
             <ul class="navbar-nav gap-4">
+                <li class="nav-item">
+                    <div class="notif">
+                        <a href="{{ route('favorites.index') }}" class="fs-5 nav-link {{ Request::path() == 'favorites' ? 'active' : '' }}">
+                            <i class="fa fa-heart"></i> Favorite
+                        </a>
+                        @if (isset($favoritesCount) && $favoritesCount > 0)
+                            <div class="circle">{{ $favoritesCount }}</div>
+                        @endif
+                    </div>
+                </li> 
                 <li class="nav-item">
                     <a class="nav-link {{ Request::path() == '/' ? 'active' : '' }}" aria-current="page"
                         href="/">Home</a>
@@ -15,7 +25,10 @@
                     <a class="nav-link {{ Request::path() == 'shop' ? 'active' : '' }}" href="/shop">Shop</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::path() == 'contact' ? 'active' : '' }}" href="/contact">Contact
+                    <a class="nav-link {{ Request::path() == 'contact' ? 'active' : '' }}" href="/contact">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::path() == 'contact_us' ? 'active' : '' }}" href="/contact_us">Contact
                         Us</a>
                 </li>
                 @auth
@@ -59,7 +72,7 @@
                             <i class="fa fa-cash-register"></i>
                         </a>
                     </div>
-                </li>
+                </li>                                                        
             </ul>
         </div>
     </div>

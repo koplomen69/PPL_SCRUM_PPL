@@ -2,10 +2,14 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductAdminController;
 use App\Http\Controllers\TransaksiAdminController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ExportController;
+use App\Http\Controllers\FavoriteController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +27,8 @@ Route::POST('/addTocart', [TransaksiController::class, 'addTocart'])->name('addT
 Route::POST('/storePelanggan', [UserController::class, 'storePelanggan'])->name('storePelanggan');
 Route::POST('/login_pelanggan', [UserController::class, 'loginProses'])->name('loginproses.pelanggan');
 Route::GET('/logout_pelanggan', [UserController::class, 'logout'])->name('logout.pelanggan');
+Route::GET('/contact_us', [Controller::class, 'contact_us'])->name('contact_us');
+
 
 Route::get('/shop', [Controller::class, 'shop'])->name('shop');
 Route::get('/transaksi', [Controller::class, 'transaksi'])->name('transaksi');
@@ -58,5 +64,27 @@ Route::group(['middleware' => 'admin'], function () {
     Route::PUT('/admin/updateData/{id}', [ProductController::class, 'update'])->name('updateData');
     Route::DELETE('/admin/deleteData/{id}', [ProductController::class, 'destroy'])->name('deleteData');
 
+
+
     Route::GET('/admin/transaksi', [TransaksiAdminController::class, 'index'])->name('transaksi.admin');
-});
+    Route::GET('/admin/product', [ProductAdminController::class, 'index'])->name('product.admin');
+
+    Route::post('/export/transaksi', [ExportController::class, 'exportTransaksi'])->name('export.transaksi');
+    Route::post('/export/product', [ExportController::class, 'exportProduct'])->name('export.product');
+
+
+
+  
+        // Favorite routes (only accessible by authenticated users who are 'pelanggan')
+        Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
+        Route::post('/favorites', [FavoriteController::class, 'storePelanggan'])->name('favorites.storePelanggan');
+        Route::delete('/favorites/{favorite}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
+    
+        // Route::middleware('pelanggan')->group(function () {
+        //     // Your routes for "pelanggan"
+        });
+        
+
+    
+    
+

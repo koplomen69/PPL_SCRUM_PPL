@@ -1,6 +1,8 @@
 @extends('pelanggan.layout.index')
 
 @section('content')
+
+    <!-- Best Seller Section -->
     @if ($best->count() == 0)
         <div class="container"></div>
     @else
@@ -10,15 +12,14 @@
                 <div class="card" style="width:220px;">
                     <div class="card-header m-auto" style="height:100%;width:100%;">
                         <img src="{{ asset('storage/product/' . $b->foto) }}" alt="baju 1"
-                            style="width: 100%;height:200px; object-fit: cover; padding:0;">
+                             style="width: 100%;height:200px; object-fit: cover; padding:0;">
                     </div>
                     <div class="card-body">
-                        <p class="m-0 text-justify"> {{ $b->nama_product }} </p>
+                        <p class="m-0 text-justify">{{ $b->nama_product }}</p>
                         <p class="m-0"><i class="fa-regular fa-star"></i> 5+</p>
                     </div>
                     <div class="card-footer d-flex flex-row justify-content-between align-items-center">
-                        <p class="m-0" style="font-size: 16px; font-weight:600;"><span>IDR
-                            </span>{{ number_format($b->harga) }}</p>
+                        <p class="m-0" style="font-size: 16px; font-weight:600;"><span>IDR</span>{{ number_format($b->harga) }}</p>
                         <button class="btn btn-outline-primary" style="font-size:24px">
                             <i class="fa-solid fa-cart-plus"></i>
                         </button>
@@ -28,27 +29,47 @@
         </div>
     @endif
 
-    <h4 class="mt-5">New Product</h4>
+    <!-- Add Products to Favorite -->
+    @if (isset($products) && $products->count() > 0)
+        @foreach ($products as $product)
+            <div class="product mt-4">
+                <h4>{{ $product->name }}</h4>
+                <p>{{ $product->description }}</p>
+
+                <!-- Form to add product to favorites -->
+                <form action="{{ route('favorites.store', $product->id) }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa-solid fa-heart"></i> Add to Favorite
+                    </button>
+                </form>
+            </div>
+        @endforeach
+    @endif
+
+    <!-- New Products Section -->
+    <h4 class="mt-5">New Products</h4>
     <div class="content mt-3 d-flex flex-lg-wrap gap-5 mb-5">
         @if ($data->isEmpty())
-            <h1>Belum ada product ...!</h1>
+            <h1>Belum ada produk ...!</h1>
         @else
             @foreach ($data as $p)
                 <div class="card" style="width:220px;">
                     <div class="card-header m-auto" style="height:100%;width:100%;">
-                        <img src="{{ asset('storage/product/' . $p->foto) }}" alt="baju 1"
-                            style="width: 100%;height:200px; object-fit: cover; padding:0;">
+                        <img src="{{ asset('storage/product/' . $p->foto) }}" alt="produk"
+                             style="width: 100%;height:200px; object-fit: cover; padding:0;">
                     </div>
                     <div class="card-body">
-                        <p class="m-0 text-justify"> {{ $p->nama_product }} </p>
+                        <p class="m-0 text-justify">{{ $p->nama_product }}</p>
                         <p class="m-0"><i class="fa-regular fa-star"></i> 5+</p>
                     </div>
                     <div class="card-footer d-flex flex-row justify-content-between align-items-center">
-                        <p class="m-0" style="font-size: 16px; font-weight:600;"><span>IDR
-                            </span>{{ number_format($p->harga) }}</p>
-                        <form action="{{route('addTocart')}}" method="POST">
+                        <p class="m-0" style="font-size: 16px; font-weight:600;"><span>IDR</span>{{ number_format($p->harga) }}</p>
+                        
+                        <!-- Form to add product to cart -->
+                        <form action="{{ route('addTocart') }}" method="POST">
                             @csrf
-                            <input type="hidden" name="idProduct" value="{{$p->id}}">
+                            <input type="hidden" name="idProduct" value="{{ $p->id }}">
                             <button type="submit" class="btn btn-outline-primary" style="font-size:24px">
                                 <i class="fa-solid fa-cart-plus"></i>
                             </button>
@@ -56,15 +77,17 @@
                     </div>
                 </div>
             @endforeach
-    </div>
-    <div class="pagination d-flex flex-row justify-content-between">
-        <div class="showData">
-            Data ditampilkan {{ $data->count() }} dari {{ $data->total() }}
         </div>
-        <div>
-            {{ $data->links() }}
+
+        <!-- Pagination -->
+        <div class="pagination d-flex flex-row justify-content-between">
+            <div class="showData">
+                Data ditampilkan {{ $data->count() }} dari {{ $data->total() }}
+            </div>
+            <div>
+                {{ $data->links() }}
+            </div>
         </div>
-    </div>
     @endif
 
 @endsection
