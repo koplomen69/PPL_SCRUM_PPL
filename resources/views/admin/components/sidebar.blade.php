@@ -1,7 +1,6 @@
 <aside
     class="sidebar navbar navbar-expand-lg bg-dark d-flex flex-column gap-4 align-content-lg-center mx-2 my-2 rounded">
     <h5 class="navbar-brand"> Canggih Clothing</h5>
-    {{-- <hr class="" style="color: white;font-weight:800"> --}}
     <div class="collapse navbar-collapse flex-grow-0" id="navbarNavDropdown">
         <ul class="navbar-nav flex-column gap-3 px-2">
             <li class="navbar-item rounded {{ Request::path() === 'admin/dashboard' ? 'bg-info' : '' }} ">
@@ -41,6 +40,14 @@
                     <div class="d-flex gap-3">
                         <span class="material-icons">people_alt</span>
                         <p class="m-0 p-0">User Management</p>
+                    </div>
+                </a>
+            </li>
+            <li class="navbar-item rounded {{ Request::path() === 'admin/feedback' ? 'bg-info' : '' }} ">
+                <a href="feedback" class="">
+                    <div class="d-flex gap-3">
+                        <span class="material-icons">feedback</span>
+                        <p class="m-0 p-0">Feedback</p>
                     </div>
                 </a>
             </li>

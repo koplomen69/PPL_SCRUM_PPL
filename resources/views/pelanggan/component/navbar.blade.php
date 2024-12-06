@@ -26,9 +26,9 @@
                 <li class="nav-item">
                     <a class="nav-link {{ Request::path() == 'shop' ? 'active' : '' }}" href="/shop">Shop</a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link {{ Request::path() == 'contact' ? 'active' : '' }}" href="/contact">About Us</a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a class="nav-link {{ Request::path() == 'contact_us' ? 'active' : '' }}" href="/contact_us">Contact
                         Us</a>

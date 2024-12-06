@@ -22,6 +22,9 @@
         data-client-key="{{ config('midtrans.client_id') }}"></script>
     <!-- Note: replace with src="https://app.midtrans.com/snap/snap.js" for Production environment -->
     {{-- <title>Toko Pakaian Canggih | {{ $title }}</title> --}}
+    <!-- Include Bootstrap CSS (ensure this is in your layout file) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+
 </head>
 
 <body>
