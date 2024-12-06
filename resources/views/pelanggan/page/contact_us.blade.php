@@ -4,8 +4,10 @@
     <div class="row mt-4 align-items-center">
         <div class="col-md-6">
             <div class="content-text">
-                toko buku online adalah sebuah aplikasi yang menyediakan berbagai macam buku yang dapat anda beli dengan harga
-                yang terjangkau dan kualitas yang terjamin. Kami menyediakan berbagai macam buku mulai dari buku pelajaran, novel,
+                toko buku online adalah sebuah aplikasi yang menyediakan berbagai macam buku yang dapat anda beli dengan
+                harga
+                yang terjangkau dan kualitas yang terjamin. Kami menyediakan berbagai macam buku mulai dari buku pelajaran,
+                novel,
                 buku anak-anak, dan lain-lain. Kami juga menyediakan berbagai
 
             </div>
@@ -38,26 +40,45 @@
                     <h4>Kritik dan saran</h4>
                 </div>
                 <div class="card-body">
-                    <p class="p-0 mb-5 text-lg-center">Masukan kritik dan saran anda kepada aplikasi kami ini agar kami dapat memberikan
+                    <p class="p-0 mb-5 text-lg-center">Masukan kritik dan saran anda kepada aplikasi kami ini agar kami
+                        dapat memberikan
                         apa yang menjadi kebutuhan anda dan kami dapat berkembang lebih baik lagi.
                     </p>
-                    <div class="mb-3 row">
-                        <label for="email" class="col-sm-2 col-form-label">Email</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="email" value=""
-                                placeholder="Masukan email Anda">
+
+
+                    <!-- Success alert -->
+                    @if (session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="pesan" class="col-sm-2 col-form-label">Pesan</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="pesan" placeholder="Masukan Pesan Anda">
+                    @endif
+
+                    <!-- Feedback form -->
+                    <form action="{{ route('admin.feedback') }}" method="POST">
+                        @csrf
+                        <div class="mb-3 row">
+                            <label for="email" class="col-sm-2 col-form-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="Masukkan email Anda" required>
+                            </div>
                         </div>
-                    </div>
-                    <button class="btn btn-primary mt-4 w-100"> Kirim pesan anda</button>
+
+                        <div class="mb-3 row">
+                            <label for="pesan" class="col-sm-2 col-form-label">Pesan</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" id="pesan" name="pesan" rows="5" placeholder="Masukkan Pesan Anda" required></textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary mt-4 w-100">Kirim Pesan Anda</button>
+                    </form>
+                    <!-- Pesan sukses jika ada -->
+
+
                 </div>
             </div>
         </div>
     </div>
-
 @endsection
