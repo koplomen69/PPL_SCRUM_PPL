@@ -76,7 +76,7 @@ class ProductController extends Controller
             ]
         )->render();
     }
-    
+
     public function update(UpdateproductRequest $request, product $product, $id)
     {
         $data = product::findOrFail($id);
@@ -120,5 +120,26 @@ class ProductController extends Controller
         ];
 
         echo json_encode($json);
+    }
+
+
+    public function addFavorite(Request $request, $productId)
+    {
+        // Get the authenticated user
+        $user = Auth::user();
+
+        // Check if the product already exists in favorites
+        $favoriteExists = $user->favorites()->where('product_id', $productId)->exists();
+
+        if ($favoriteExists) {
+            return redirect()->back()->with('error', 'This product is already in your favorites!');
+        }
+
+        // Add the product to the user's favorites
+        $user->favorites()->create([
+            'product_id' => $productId,
+        ]);
+
+        return redirect()->back()->with('success', 'Product added to your favorites!');
     }
 }

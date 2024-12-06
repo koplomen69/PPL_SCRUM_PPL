@@ -170,4 +170,26 @@ class UserController extends Controller
         Alert::toast('Kamu berhasil Logout', 'success');
         return redirect('/');
     }
+
+
+
+
+    public function addFavorite(Request $request, $productId)
+    {
+        $user = Auth::user(); // Get the authenticated user
+
+        // Check if the product is already in the user's favorites
+        $favoriteExists = $user->favorites()->where('product_id', $productId)->exists();
+
+        if ($favoriteExists) {
+            return redirect()->back()->with('error', 'This product is already in your favorites!');
+        }
+
+        // Add the product to the user's favorites
+        $user->favorites()->create([
+            'product_id' => $productId,
+        ]);
+
+        return redirect()->back()->with('success', 'Product added to your favorites!');
+    }
 }

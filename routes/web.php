@@ -71,11 +71,23 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('/export/transaksi', [ExportController::class, 'exportTransaksi'])->name('export.transaksi');
     Route::post('/export/product', [ExportController::class, 'exportProduct'])->name('export.product');
 
-     // Favorite routes (only accessible by authenticated users who are 'pelanggan')
-     Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
-     Route::post('/favorites', [FavoriteController::class, 'storePelanggan'])->name('favorites.storePelanggan');
-     Route::delete('/favorites/{favorite}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
+    // Route to show the favorites list (GET request)
+Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
 
-     // Route::middleware('pelanggan')->group(function () {
-     //     // Your routes for "pelanggan"
+// Route to store a new favorite item (POST request)
+Route::post('/favorites', [FavoriteController::class, 'store'])->name('favorites.store');
+
+// Route to remove a favorite item (DELETE request)
+Route::delete('/favorites/{favorite}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
+
+
+
+Route::post('/favorites/storePelanggan/{productId}', [FavoriteController::class, 'storePelanggan'])->name('favorites.storePelanggan');
+
+
+Route::get('/', function () {
+    $favoritesCount = Favorite::where('user_id', auth()->id())->count();
+    return view('home', compact('favoritesCount'));
+});
+
 });

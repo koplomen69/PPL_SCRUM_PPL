@@ -9,5 +9,12 @@ class Favorite extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['item_name'];
+    protected $fillable = ['name'];
+
+    // In Favorite model
+public function product()
+{
+    return $this->belongsTo(Product::class); // Assuming 'product_id' is the foreign key in the 'favorites' table
+}
+
 }

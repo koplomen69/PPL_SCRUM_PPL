@@ -26,4 +26,9 @@ class product extends Model
     // {
     //     return $this->hasOne(tblCart::class, 'id_barang', 'id');
     // }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
 }
