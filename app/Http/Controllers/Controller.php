@@ -60,6 +60,15 @@ class Controller extends BaseController
             'count'     => $countKeranjang,
         ]);
     }
+    public function favorite()
+    {
+        $countKeranjang = tblCart::where(['idUser' => 'guest123', 'status' => 0])->count();
+
+        return view('pelanggan.page.favorite', [
+            'title'     => 'Contact Us',
+            'count'     => $countKeranjang,
+        ]);
+    }
     public function checkout()
     {
         $countKeranjang = tblCart::where(['idUser' => 'guest123', 'status' => 0])->count();

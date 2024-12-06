@@ -8,6 +8,18 @@
         <div class="collapse navbar-collapse justify-content-end gap-4" id="navbarSupportedContent">
             <ul class="navbar-nav gap-4">
                 <li class="nav-item">
+                    <div class="notif">
+                        <a href="{{ route('favorites.index') }}" class="fs-5 nav-link {{ Request::path() == 'favorites' ? 'active' : '' }}">
+                            <i class="fa fa-heart"></i> Favorite
+                        </a>
+                        @if (isset($favoritesCount) && $favoritesCount > 0)
+                            <div class="circle">{{ $favoritesCount }}</div>
+                        @endif
+                    </div>
+                </li>
+
+
+                <li class="nav-item">
                     <a class="nav-link {{ Request::path() == '/' ? 'active' : '' }}" aria-current="page"
                         href="/">Home</a>
                 </li>
@@ -48,12 +60,13 @@
                 @endauth
                 <li class="nav-item">
                     <div class="notif">
-                        <a href="/transaksi" class="fs-5 nav-link {{ Request::path() == 'transaksi' ? 'active' : '' }}">
+                        <a href="/transaksi"
+                            class="fs-5 nav-link {{ Request::path() == 'transaksi' ? 'active' : '' }}">
                             <i class="fa fa-bag-shopping"></i>
                         </a>
-                        @if ($count)
+                        {{-- @if ($count)
                             <div class="circle">{{ $count }}</div>
-                        @endif
+                        @endif --}}
                     </div>
                 </li>
                 <li class="nav-item">

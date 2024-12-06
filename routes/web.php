@@ -8,6 +8,7 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExportController;
+use App\Http\Controllers\FavoriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,4 +70,24 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::post('/export/transaksi', [ExportController::class, 'exportTransaksi'])->name('export.transaksi');
     Route::post('/export/product', [ExportController::class, 'exportProduct'])->name('export.product');
+
+    // Route to show the favorites list (GET request)
+Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
+
+// Route to store a new favorite item (POST request)
+Route::post('/favorites', [FavoriteController::class, 'store'])->name('favorites.store');
+
+// Route to remove a favorite item (DELETE request)
+Route::delete('/favorites/{favorite}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
+
+
+
+Route::post('/favorites/storePelanggan/{productId}', [FavoriteController::class, 'storePelanggan'])->name('favorites.storePelanggan');
+
+
+Route::get('/', function () {
+    $favoritesCount = Favorite::where('user_id', auth()->id())->count();
+    return view('home', compact('favoritesCount'));
+});
+
 });

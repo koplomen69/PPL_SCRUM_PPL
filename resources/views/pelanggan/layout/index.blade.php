@@ -21,7 +21,7 @@
     <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
         data-client-key="{{ config('midtrans.client_id') }}"></script>
     <!-- Note: replace with src="https://app.midtrans.com/snap/snap.js" for Production environment -->
-    <title>Toko Pakaian Canggih | {{ $title }}</title>
+    {{-- <title>Toko Pakaian Canggih | {{ $title }}</title> --}}
 </head>
 
 <body>
