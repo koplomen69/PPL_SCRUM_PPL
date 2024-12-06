@@ -8,6 +8,7 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExportController;
+use App\Http\Controllers\FavoriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,4 +70,12 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::post('/export/transaksi', [ExportController::class, 'exportTransaksi'])->name('export.transaksi');
     Route::post('/export/product', [ExportController::class, 'exportProduct'])->name('export.product');
+
+     // Favorite routes (only accessible by authenticated users who are 'pelanggan')
+     Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
+     Route::post('/favorites', [FavoriteController::class, 'storePelanggan'])->name('favorites.storePelanggan');
+     Route::delete('/favorites/{favorite}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
+
+     // Route::middleware('pelanggan')->group(function () {
+     //     // Your routes for "pelanggan"
 });
