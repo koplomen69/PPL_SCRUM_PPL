@@ -22,6 +22,15 @@
                         <td>{{ $feedback->pesan }}</td>
                         <td>{{ $feedback->created_at->format('d-m-Y H:i') }}</td>
                     </tr>
+                    <td>
+        <form action="{{ route('admin.feedback.destroy', $feedback->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus feedback ini?')">
+                Hapus
+            </button>
+        </form>
+    </td>
                 @endforeach
             </tbody>
         </table>
