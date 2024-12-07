@@ -97,3 +97,7 @@ Route::post('/admin/feedback', [FeedbackController::class, 'store'])->name('admi
 
 // Assuming the route for contact_us is something like this
 Route::get('/pelanggan/contact-us', [FeedbackController::class, 'store'])->name('pelanggan.page.contact_us');
+
+
+Route::delete('/admin/feedback/{id}', [FeedbackController::class, 'destroy'])->name('admin.feedback.destroy');
+Route::get('/admin/feedback', [FeedbackController::class, 'index'])->name('admin.page.feedback');
