@@ -19,7 +19,6 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
-
     public function shop(Request $request)
     {
         if ($request->has('kategory') && $request->has('type')) {

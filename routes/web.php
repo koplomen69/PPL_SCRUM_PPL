@@ -9,7 +9,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\FavoriteController;
-
+use App\Http\Controllers\FeedbackController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -70,7 +70,7 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::post('/export/transaksi', [ExportController::class, 'exportTransaksi'])->name('export.transaksi');
     Route::post('/export/product', [ExportController::class, 'exportProduct'])->name('export.product');
-
+});
     // Route to show the favorites list (GET request)
 Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
 
@@ -85,9 +85,15 @@ Route::delete('/favorites/{favorite}', [FavoriteController::class, 'destroy'])->
 Route::post('/favorites/storePelanggan/{productId}', [FavoriteController::class, 'storePelanggan'])->name('favorites.storePelanggan');
 
 
-Route::get('/', function () {
-    $favoritesCount = Favorite::where('user_id', auth()->id())->count();
-    return view('home', compact('favoritesCount'));
-});
+Route::get('/admin/feedback', [FeedbackController::class, 'index'])->name('admin.feedback.index');
 
-});
+
+
+// Route untuk menampilkan form feedback (GET)
+Route::get('/admin/feedback', [FeedbackController::class, 'index'])->name('admin.feedback.index');
+
+// Route untuk menangani pengiriman form feedback (POST)
+Route::post('/admin/feedback', [FeedbackController::class, 'store'])->name('admin.feedback');
+
+// Assuming the route for contact_us is something like this
+Route::get('/pelanggan/contact-us', [FeedbackController::class, 'store'])->name('pelanggan.page.contact_us');
