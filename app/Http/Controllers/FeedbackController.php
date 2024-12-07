@@ -20,7 +20,6 @@ class FeedbackController extends Controller
             'email' => $validated['email'],
             'pesan' => $validated['pesan'],
         ]);
-        Feedback::create($validated);
 
 
         // Redirect ke halaman feedback setelah berhasil
