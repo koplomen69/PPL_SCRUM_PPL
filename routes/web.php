@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\HistoryController;
 
 
 /*
@@ -79,7 +80,20 @@ Route::group(['middleware' => 'admin'], function () {
         Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
         Route::post('/favorites', [FavoriteController::class, 'storePelanggan'])->name('favorites.storePelanggan');
         Route::delete('/favorites/{favorite}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
-    
+       
+
+
+// Route untuk menampilkan halaman history transaksi
+Route::get('/history', [HistoryController::class, 'history'])->name('history');
+
+// Route untuk menambahkan transaksi baru ke history
+Route::post('/history', [HistoryController::class, 'store'])->name('history.store');
+
+// Route untuk menghapus transaksi dari history
+Route::delete('/history/{transaksi}', [HistoryController::class, 'destroy'])->name('history.destroy');
+
+
+
         // Route::middleware('pelanggan')->group(function () {
         //     // Your routes for "pelanggan"
         });
