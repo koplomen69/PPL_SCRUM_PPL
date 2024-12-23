@@ -101,3 +101,7 @@ Route::get('/pelanggan/contact-us', [FeedbackController::class, 'store'])->name(
 
 Route::delete('/admin/feedback/{id}', [FeedbackController::class, 'destroy'])->name('admin.feedback.destroy');
 Route::get('/admin/feedback', [FeedbackController::class, 'index'])->name('admin.page.feedback');
+
+
+Route::post('/favorites/{id}/move-to-transaction', [FavoriteController::class, 'moveToTransaction'])->name('favorites.moveToTransaction');
+
