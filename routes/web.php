@@ -11,6 +11,7 @@ use App\Http\Controllers\ExportController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\HistoryController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -97,3 +98,4 @@ Route::post('/history', [HistoryController::class, 'store'])->name('history.stor
 // Route untuk menghapus transaksi dari history
 Route::delete('/history/{transaksi}', [HistoryController::class, 'destroy'])->name('history.destroy');
 
+Route::post('/favorites/{id}/move-to-transaction', [FavoriteController::class, 'moveToTransaction'])->name('favorites.moveToTransaction');
