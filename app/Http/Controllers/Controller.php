@@ -14,6 +14,8 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Redirect;
+
 
 class Controller extends BaseController
 {
@@ -172,31 +174,34 @@ class Controller extends BaseController
 
     public function bayar($id)
     {
-        $find_data = transaksi::find($id);
+        $find_data = Transaksi::find($id);
+
+        if (!$find_data) {
+            return redirect()->back()->withErrors(['error' => 'Transaksi tidak ditemukan.']);
+        }
+
         $countKeranjang = tblCart::where(['idUser' => 'guest123', 'status' => 0])->count();
+
         \Midtrans\Config::$serverKey = config('midtrans.server_key');
-        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
         \Midtrans\Config::$isProduction = false;
-        // Set sanitization on (default)
         \Midtrans\Config::$isSanitized = true;
-        // Set 3DS transaction for credit card to true
         \Midtrans\Config::$is3ds = true;
 
         $params = array(
             'transaction_details' => array(
-                'order_id' => $find_data->code_transaksi,
+                'order_id' => $find_data->code_transaksi . '-' . time(), // Tambahkan timestamp agar unik
                 'gross_amount' => $find_data->total_harga,
             ),
             'customer_details' => array(
                 'first_name' => 'Mr',
                 'last_name' => $find_data->nama_customer,
-                // 'email' => 'budi.pra@example.com',
                 'phone' => $find_data->no_tlp,
             ),
         );
 
+
         $snapToken = \Midtrans\Snap::getSnapToken($params);
-        // dd($snapToken);die;
+
         return view('pelanggan.page.detailTransaksi', [
             'name' => 'Detail Transaksi',
             'title' => 'Detail Transaksi',
@@ -205,6 +210,9 @@ class Controller extends BaseController
             'data' => $find_data,
         ]);
     }
+
+
+
 
     public function admin()
     {
@@ -277,4 +285,53 @@ class Controller extends BaseController
         Alert::toast('Kamu berhasil Logout', 'success');
         return redirect('admin');
     }
+
+    public function transaksiBerhasil()
+    {
+        // Ambil data transaksi dengan status "Paid"
+        $transaksiBerhasil = transaksi::where('status', 'Paid')->get();
+
+        // Kirim data ke view
+        return view('pelanggan.page.transaksiBerhasil', [
+            'name' => 'Transaksi Berhasil',
+            'title' => 'Riwayat Transaksi',
+            'data' => $transaksiBerhasil,
+        ]);
+    }
+
+    public function midtransNotification()
+    {
+        $payload = file_get_contents('php://input');
+        $notification = json_decode($payload);
+
+        // Validasi payload
+        if (!$notification || !isset($notification->order_id)) {
+            return response()->json(['error' => 'Invalid notification'], 400);
+        }
+
+        $transactionStatus = $notification->transaction_status;
+        $orderId = $notification->order_id;
+
+        // Cari transaksi berdasarkan order_id
+        $transaksi = Transaksi::where('code_transaksi', $orderId)->first();
+
+        if (!$transaksi) {
+            return response()->json(['error' => 'Transaksi tidak ditemukan'], 404);
+        }
+
+        // Update status transaksi berdasarkan status dari Midtrans
+        if (in_array($transactionStatus, ['capture', 'settlement'])) {
+            $transaksi->status = 'Paid';
+        } elseif ($transactionStatus == 'pending') {
+            $transaksi->status = 'Unpaid';
+        } elseif (in_array($transactionStatus, ['deny', 'expire', 'cancel'])) {
+            $transaksi->status = 'Failed';
+        }
+
+        $transaksi->save();
+
+        return response()->json(['message' => 'Status transaksi berhasil diperbarui'], 200);
+    }
+
+
 }
