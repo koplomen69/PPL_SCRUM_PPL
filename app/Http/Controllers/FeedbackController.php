@@ -20,12 +20,23 @@ class FeedbackController extends Controller
             'email' => $validated['email'],
             'pesan' => $validated['pesan'],
         ]);
-     
+        Feedback::create($validated);
 
 
         // Redirect ke halaman feedback setelah berhasil
         return redirect()->route('pelanggan.page.contact_us')->with('success', 'Feedback berhasil dikirim!');
     }
+    public function destroy($id)
+{
+    // Cari feedback berdasarkan ID
+    $feedback = Feedback::findOrFail($id);
+
+    // Hapus feedback dari database
+    $feedback->delete();
+
+    // Redirect kembali dengan pesan sukses
+    return redirect()->route('admin.page.feedback')->with('success', 'Feedback berhasil dihapus!');
+}
 
     public function index()
     {

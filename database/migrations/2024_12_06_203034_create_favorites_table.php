@@ -14,10 +14,11 @@ class CreateFavoritesTable extends Migration
     public function up()
     {
         Schema::create('favorites', function (Blueprint $table) {
-            $table->id(); // Auto-incrementing primary key
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Foreign key to 'users' table
-            $table->foreignId('product_id')->constrained()->onDelete('cascade'); // Foreign key to 'products' table
-            $table->timestamps(); // Created at and updated at timestamps
+            $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
+            $table->unique(['user_id', 'product_id']); // Ensure a product can only be favorited once by the user
         });
     }
 
