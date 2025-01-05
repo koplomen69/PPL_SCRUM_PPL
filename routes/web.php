@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\HistoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -88,20 +89,11 @@ Route::post('/favorites/storePelanggan/{productId}', [FavoriteController::class,
 Route::get('/admin/feedback', [FeedbackController::class, 'index'])->name('admin.feedback.index');
 
 
+Route::get('/history', [HistoryController::class, 'history'])->name('history');
 
-// Route untuk menampilkan form feedback (GET)
-Route::get('/admin/feedback', [FeedbackController::class, 'index'])->name('admin.feedback.index');
+// Route untuk menambahkan transaksi baru ke history
+Route::post('/history', [HistoryController::class, 'store'])->name('history.store');
 
-// Route untuk menangani pengiriman form feedback (POST)
-Route::post('/admin/feedback', [FeedbackController::class, 'store'])->name('admin.feedback');
-
-// Assuming the route for contact_us is something like this
-Route::get('/pelanggan/contact-us', [FeedbackController::class, 'store'])->name('pelanggan.page.contact_us');
-
-
-Route::delete('/admin/feedback/{id}', [FeedbackController::class, 'destroy'])->name('admin.feedback.destroy');
-Route::get('/admin/feedback', [FeedbackController::class, 'index'])->name('admin.page.feedback');
-
-
-Route::post('/favorites/{id}/move-to-transaction', [FavoriteController::class, 'moveToTransaction'])->name('favorites.moveToTransaction');
+// Route untuk menghapus transaksi dari history
+Route::delete('/history/{transaksi}', [HistoryController::class, 'destroy'])->name('history.destroy');
 

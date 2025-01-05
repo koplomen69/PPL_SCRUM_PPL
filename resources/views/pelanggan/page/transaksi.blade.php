@@ -38,6 +38,7 @@
                                 <input type="text" class="col-sm-2 form-control w-25 border-0 fs-4 total" name="total"
                                     readonly id="total">
                             </div>
+                            <a href="{{ route('history') }}">Lihat History Transaksi</a>
                             <div class="row w-50 gap-1">
                                 <button type="submit" class="btn btn-success col-sm-5">
                                     <i class="fa fa-shopping-cart"></i>

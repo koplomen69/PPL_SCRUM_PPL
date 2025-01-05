@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #025464">
     <div class="container">
-        <a class="navbar-brand" href="#">Toko Pakaian Canggih</a>
+        <a class="navbar-brand" href="#">Toko Buku Canggih</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -76,6 +76,19 @@
                         </a>
                     </div>
                 </li>
+            </li>
+
+            <!-- History -->
+            <li class="nav-item">
+                <div class="notif">
+                    <a href="/history" class="fs-5 nav-link {{ Request::path() == 'history' ? 'active' : '' }}">
+                        <i class="fa fa-history"></i> History
+                    </a>
+                    @if (isset($historyCount) && $historyCount > 0)
+                        <div class="circle">{{ $historyCount }}</div>
+                    @endif
+                </div>
+            </li>
             </ul>
         </div>
     </div>
