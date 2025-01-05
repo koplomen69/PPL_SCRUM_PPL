@@ -129,7 +129,14 @@
                         <form action="{{ route('favorites.storePelanggan', $p->id) }}" method="POST">
                             @csrf
                             <button type="submit" class="btn btn-outline-primary" style="font-size:24px">
-                                <i class="fa-solid fa-heart"></i> Add to Favorite
+                                <i class="fa-solid fa-heart"></i>
+                            </button>
+                        </form>
+                        <form action="{{route('addTocart')}}" method="POST">
+                            @csrf
+                            <input type="hidden" name="idProduct" value="{{$p->id}}">
+                            <button type="submit" class="btn btn-outline-primary" style="font-size:24px">
+                                <i class="fa-solid fa-cart-plus"></i>
                             </button>
                         </form>
                     </div>
