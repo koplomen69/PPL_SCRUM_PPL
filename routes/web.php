@@ -100,13 +100,10 @@ Route::post('/admin/feedback', [FeedbackController::class, 'store'])->name('admi
 // Assuming the route for contact_us is something like this
 Route::get('/pelanggan/contact-us', [FeedbackController::class, 'store'])->name('pelanggan.page.contact_us');
 
-// Route untuk menampilkan halaman history transaksi
-Route::get('/history', [HistoryController::class, 'history'])->name('history');
 
-// Route untuk menambahkan transaksi baru ke history
-Route::post('/history', [HistoryController::class, 'store'])->name('history.store');
+Route::get('/history', [Controller::class, 'transaksiBerhasil'])->name('history');
 
-// Route untuk menghapus transaksi dari history
-Route::delete('/history/{transaksi}', [HistoryController::class, 'destroy'])->name('history.destroy');
+Route::post('/midtrans/notification', [Controller::class, 'midtransNotification']);
+
 
 Route::post('/favorites/{id}/move-to-transaction', [FavoriteController::class, 'moveToTransaction'])->name('favorites.moveToTransaction');

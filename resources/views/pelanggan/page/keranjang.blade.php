@@ -33,8 +33,8 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('keranjang.bayar', ['id' => $item->id]) }}"
-                                        class="btn btn-success">Bayar</a>
+                                    <<a href="{{ route('keranjang.bayar', ['id' => $item->id]) }}" class="btn btn-success">Bayar</a>
+
                                 </td>
                             </tr>
                         @endforeach
