@@ -29,9 +29,9 @@
                         <div class="col-sm-7">
                             <select type="text" class="form-control" id="type" name="type">
                                 <option value=""> Pilih Type </option>
-                                <option value="celana" {{ $data->type === 'celana' ? 'selected' : '' }}>Celana</option>
-                                <option value="baju" {{ $data->type === 'baju' ? 'selected' : '' }}>Baju</option>
-                                <option value="aksesoris" {{ $data->type === 'aksesoris' ? 'selected' : '' }}>Aksesoris
+                                <option value="Sejarah" {{ $data->type === 'Sejarah' ? 'selected' : '' }}>Sejarah</option>
+                                <option value="Pemograman" {{ $data->type === 'Pemograman' ? 'selected' : '' }}>Pemograman</option>
+                                <option value="Masakan" {{ $data->type === 'Masakan' ? 'selected' : '' }}>Masakan
                                 </option>
                             </select>
                         </div>
@@ -41,11 +41,11 @@
                         <div class="col-sm-7">
                             <select type="text" class="form-control" id="kategori" name="kategori">
                                 <option value=""> Pilih Kategori </option>
-                                <option value="Pria" {{ $data->kategory === 'Pria' ? 'selected' : '' }}>Pria</option>
-                                <option value="Wanita" {{ $data->kategory === 'wanita' ? 'selected' : '' }}>Wanita
+                                <option value="Buku Sejarah" {{ $data->kategory === 'Buku Sejarah' ? 'selected' : '' }}>Buku Sejarah</option>
+                                <option value="Buku Pemograman" {{ $data->kategory === 'Buku Pemograman' ? 'selected' : '' }}>Buku Pemograman
                                 </option>
-                                <option value="Anak-anak" {{ $data->kategory === 'Anak-anak' ? 'selected' : '' }}>
-                                    Anak-anak</option>
+                                <option value="Buku Masakan" {{ $data->kategory === 'Buku Masakan' ? 'selected' : '' }}>
+                                    Buku Masakan</option>
                             </select>
                         </div>
                     </div>

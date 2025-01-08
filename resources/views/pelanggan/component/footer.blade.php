@@ -28,10 +28,10 @@
 
         </div>
         <div class="sosmed d-flex gap-3">
-     
+
         </div>
     </div>
 </div>
 <div class="text-center p-lg-4 mt-3">
-    Copy right @ Toko Pakaian Canggih</i>
+    Copy right @ Toko Buku Canggih</i>
 </div>
