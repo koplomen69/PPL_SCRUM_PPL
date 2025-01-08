@@ -107,3 +107,5 @@ Route::post('/midtrans/notification', [Controller::class, 'midtransNotification'
 
 
 Route::post('/favorites/{id}/move-to-transaction', [FavoriteController::class, 'moveToTransaction'])->name('favorites.moveToTransaction');
+Route::get('/transaksi/berhasil', [TransaksiController::class, 'berhasil'])->name('transaksi.berhasil');
+Route::get('/shop', [Controller::class, 'shop'])->name('shop');

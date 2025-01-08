@@ -33,8 +33,6 @@
                     <a class="nav-link {{ Request::path() == 'contact_us' ? 'active' : '' }}" href="/contact_us">Contact
                         Us</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('transaksi.berhasil') }}">Riwayat Transaksi</a>
                 </li>
 
 
