@@ -16,7 +16,7 @@
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#flush-collapseOne" aria-expanded="false"
                                 aria-controls="flush-collapseOne">
-                                Pria
+                                Buku Sejarah
                             </button>
                         </h2>
                         <div id="flush-collapseOne" class="accordion-collapse collapse"
@@ -24,16 +24,16 @@
                             <div class="accordion-body">
                                 <div class="d-flex flex-column gap-4">
                                     <div class="d-flex flex-row gap-3">
-                                        <input type="checkbox" name="kategory" class="kategory" value="celana Pria">
-                                        <span>Celana Pria</span>
+                                        <input type="checkbox" name="kategory" class="kategory" value="Buku Sejarah Indonesia">
+                                        <span>Buku Sejarah Indonesia</span>
                                     </div>
                                     <div class="d-flex flex-row gap-3">
-                                        <input type="checkbox" name="kategory" class="kategory" value="baju Pria">
-                                        <span>Baju Pria</span>
+                                        <input type="checkbox" name="kategory" class="kategory" value="Buku Sejarah Jepang">
+                                        <span>Buku Sejarah Jepang</span>
                                     </div>
                                     <div class="d-flex flex-row gap-3">
-                                        <input type="checkbox" name="kategory" class="kategory" value="aksesoris Pria">
-                                        <span>Aksesoris Pria</span>
+                                        <input type="checkbox" name="kategory" class="kategory" value="Buku Sejarah German">
+                                        <span>Buku Sejarah German</span>
                                     </div>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#flush-collapseTwo" aria-expanded="false"
                                 aria-controls="flush-collapseTwo">
-                                Wanita
+                                Buku Pemograman
                             </button>
                         </h2>
                         <div id="flush-collapseTwo" class="accordion-collapse collapse"
@@ -54,16 +54,16 @@
                             <div class="accordion-body p-0">
                                 <div class="d-flex flex-column gap-4">
                                     <div class="d-flex flex-row gap-3">
-                                        <input type="checkbox" name="kategory" class="kategory" value="celana Wanita">
-                                        <span>Celana Wanita</span>
+                                        <input type="checkbox" name="kategory" class="kategory" value="Buku Pemograman Phyton">
+                                        <span>Buku Pemograman Phyton</span>
                                     </div>
                                     <div class="d-flex flex-row gap-3">
-                                        <input type="checkbox" name="kategory" class="kategory" value="baju Wanita">
-                                        <span>Baju Wanita</span>
+                                        <input type="checkbox" name="kategory" class="kategory" value="Buku Pemograman CSS">
+                                        <span>Buku Pemograman CSS</span>
                                     </div>
                                     <div class="d-flex flex-row gap-3">
-                                        <input type="checkbox" name="kategory" class="kategory" value="aksesoris Wanita">
-                                        <span>Aksesoris Wanita</span>
+                                        <input type="checkbox" name="kategory" class="kategory" value="Buku Pemograman Java">
+                                        <span>Buku Pemograman Java</span>
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#flush-collapseThree" aria-expanded="false"
                                 aria-controls="flush-collapseThree">
-                                Anak-anak
+                                Buku Masakan
                             </button>
                         </h2>
                         <div id="flush-collapseThree" class="accordion-collapse collapse"
@@ -85,18 +85,18 @@
                                 <div class="d-flex flex-column gap-4">
                                     <div class="d-flex flex-row gap-3">
                                         <input type="checkbox" name="kategory" class="kategory"
-                                            value="celana anak-anak">
-                                        <span>Celana Anak-anak</span>
+                                            value="Buku Masakan Indonesia">
+                                        <span>Buku Masakan Indonesia</span>
                                     </div>
                                     <div class="d-flex flex-row gap-3">
                                         <input type="checkbox" name="kategory" class="kategory"
-                                            value="baju anak-anak">
-                                        <span>Baju Anak-anak</span>
+                                            value="Buku Masakan Jepang">
+                                        <span>Buku Masakan Jepang</span>
                                     </div>
                                     <div class="d-flex flex-row gap-3">
                                         <input type="checkbox" name="kategory" class="kategory"
-                                            value="aksesoris anak-anak">
-                                        <span>Aksesoris Anak-anak</span>
+                                            value="Buku Masakan German">
+                                        <span>Buku Masakan German</span>
                                     </div>
                                 </div>
                             </div>
